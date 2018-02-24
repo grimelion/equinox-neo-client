@@ -13,13 +13,15 @@ import { Switch, Route } from 'react-router-dom';
  */
 import Auth from './Auth/Auth';
 import MainPage from './MainPage/MainPage';
+import NotFound from './NotFound/NotFound';
 
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstTimeUsage: true
+      firstTimeUsage: true,
+      enableMainPage: false
     }
 
   }
@@ -33,9 +35,13 @@ class AppComponent extends React.Component {
               isFirstUsage={this.state.firstTimeUsage}
             />
           )} />
-          <Route path='/main' exact render={() => (
-            <MainPage />
-          )} />
+          <Route path='/main' exact render={() => {
+            if (this.state.enableMainPage === true) {
+              return (<MainPage />)
+            } else {
+               return (<NotFound />)
+            }
+          }} />
         </Switch>
       </div>
     );
