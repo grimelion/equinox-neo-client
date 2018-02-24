@@ -21,9 +21,14 @@ class AppComponent extends React.Component {
 
     this.state = {
       firstTimeUsage: true,
-      enableMainPage: false
+      isEnabledMainPage: false
     }
 
+    this.enableMainPage = this.enableMainPage.bind(this);
+  }
+
+  enableMainPage() {
+    this.setState({isEnabledMainPage: true});
   }
 
   render() {
@@ -33,10 +38,11 @@ class AppComponent extends React.Component {
           <Route path='/' exact render={() => (
             <Auth
               isFirstUsage={this.state.firstTimeUsage}
+              enableMainPage={this.enableMainPage}
             />
           )} />
           <Route path='/main' exact render={() => {
-            if (this.state.enableMainPage === true) {
+            if (this.state.isEnabledMainPage === true) {
               return (<MainPage />)
             } else {
                return (<NotFound />)
