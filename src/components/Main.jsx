@@ -36,9 +36,11 @@ class AppComponent extends React.Component {
   }
 
   enableMainPage() {
-    /*this.setState({isEnabledMainPage: true});*/
+    this.setState({isEnabledMainPage: true});
     const privateKey = Neon.create.privateKey(),
-          wif = Neon.get.WIFFromPrivateKey(privateKey);
+          wif = Neon.get.WIFFromPrivateKey(privateKey),
+	  client = Neon.create.rpcClient('http://localhost:30333');
+    client.getBlockCount().then(res => console.log(res));
     setTimeout(() => console.log(wif), 2000);
   }
 

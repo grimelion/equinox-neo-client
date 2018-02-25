@@ -16,6 +16,10 @@ class MainPage extends React.Component {
     this.makeRequest = this.makeRequest.bind(this);
   }
 
+  makeRequest() {
+    
+  }
+
   render() {
     return (
       <div className="mainPage-container">

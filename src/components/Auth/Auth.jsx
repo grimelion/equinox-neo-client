@@ -16,7 +16,7 @@ class Auth extends React.Component {
       registration: true,
       isAuthPassed: false
     }
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
     this.handleLoggin = this.handleLoggin.bind(this);
@@ -30,6 +30,7 @@ class Auth extends React.Component {
   handleRegistration(password) {
     this.props.storePassword(password);
     this.props.enableMainPage();
+    this.setState({isAuthPassed: true});
   }
 
   handleLoggin(password) {
