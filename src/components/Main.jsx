@@ -3,6 +3,8 @@ require('styles/App.scss');
 
 import React from 'react';
 
+import Neon from '@cityofzion/neon-js';
+
 /*
  * Helping libs
  */
@@ -21,14 +23,23 @@ class AppComponent extends React.Component {
 
     this.state = {
       firstTimeUsage: true,
-      isEnabledMainPage: false
+      isEnabledMainPage: true,
+      store: ''
     }
 
     this.enableMainPage = this.enableMainPage.bind(this);
+    this.storePassword = this.storePassword.bind(this);
+  }
+
+  storePassword(password) {
+    this.setState({store: password});
   }
 
   enableMainPage() {
-    this.setState({isEnabledMainPage: true});
+    /*this.setState({isEnabledMainPage: true});*/
+    const privateKey = Neon.create.privateKey(),
+          wif = Neon.get.WIFFromPrivateKey(privateKey);
+    setTimeout(() => console.log(wif), 2000);
   }
 
   render() {
@@ -39,11 +50,12 @@ class AppComponent extends React.Component {
             <Auth
               isFirstUsage={this.state.firstTimeUsage}
               enableMainPage={this.enableMainPage}
+              storePassword={this.storePassword}
             />
           )} />
           <Route path='/main' exact render={() => {
             if (this.state.isEnabledMainPage === true) {
-              return (<MainPage />)
+              return (<MainPage enableMainPage={this.enableMainPage}/>)
             } else {
                return (<NotFound />)
             }

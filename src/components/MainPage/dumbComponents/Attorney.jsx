@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Attorney = () => {
+const Attorney = (props) => {
   return (
     <div className="attorney">
-      Attorney
+        <button onClick={props.makeRequest}>Make Request</button>
     </div>
   )
 }

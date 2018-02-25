@@ -12,6 +12,8 @@ class MainPage extends React.Component {
     super(props);
 
     this.state = {}
+
+    this.makeRequest = this.makeRequest.bind(this);
   }
 
   render() {
@@ -19,7 +21,7 @@ class MainPage extends React.Component {
       <div className="mainPage-container">
         <Court />
         <Lawyer />
-        <Attorney />
+        <Attorney makeRequest={this.makeRequest}/>
       </div>
     )
   }

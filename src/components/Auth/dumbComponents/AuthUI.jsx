@@ -7,18 +7,14 @@ const AuthUI = (props) => {
         <h1>Registration on local client</h1>
         <form>
           <label>
-            Private access key:
-            <input type="text" placeholder="Wallet private access key"/>
-          </label>
-          <label>
             Password:
-            <input type="password" placeholder="Password"/>
+            <input type="password" placeholder="Password" value={props.password} onChange={props.handleChangePassword}/>
           </label>
           <label>
             Repeat password:
             <input type="password" placeholder="Repeat password"/>
           </label>
-          <div className="submit-btn">Confirm</div>
+          <button onClick={(e) =>{e.preventDefault(); props.handleSubmit('registration')}}>Generate key</button>
         </form>
     </div>
     )

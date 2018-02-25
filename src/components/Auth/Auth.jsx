@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { sha256 } from 'crypto-js';
+
 import { Redirect } from 'react-router-dom';
 
 import AuthUI from './dumbComponents/AuthUI';
@@ -19,18 +21,15 @@ class Auth extends React.Component {
     this.handleRegistration = this.handleRegistration.bind(this);
     this.handleLoggin = this.handleLoggin.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleChangeKey = this.handleChangeKey.bind(this);
-  }
-
-  handleChangeKey(event) {
-    this.setState({key: event.target.value});
   }
 
   handleChangePassword(event) {
     this.setState({password: event.target.value});
   }
 
-  handleRegistration(key, password) {
+  handleRegistration(password) {
+    this.props.storePassword(password);
+    this.props.enableMainPage();
   }
 
   handleLoggin(password) {
@@ -38,8 +37,8 @@ class Auth extends React.Component {
 
   handleSubmit(type) {
     if(type === 'registration') {
-      this.handleRegistration(this.state.key, this.state.password);
-      this.setState({key: '', password: ''});
+      this.handleRegistration(this.state.password);
+      this.setState({password: ''});
     } else {
       this.handleLoggin(this.state.password);
       this.setState({password: ''});
@@ -59,8 +58,9 @@ class Auth extends React.Component {
     return (
       <AuthUI
             registration={this.state.registration}
-            key={this.state.key}
             password={this.state.password}
+            handleSubmit={this.handleSubmit}
+            handleChangePassword={this.handleChangePassword}
       />
     )
   }
