@@ -8,8 +8,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
-  <div id="app">APPLICATION CONTENT</div>
-
+  <div id="app">
+    <h1 id="loader">Application is loading, please wait</h1>
+  </div>
+  <script>
+    let obj = {
+      i: 0,
+      f: function() {
+        this.i = (this.i + 1) % 4;
+        let h1 = document.getElementById('loader');
+        h1.text = 'Application is loading, please wait'
+        h1.text += '.'.repeat(this.i);
+      }
+    };
+    setInterval(() => (document.getElementById('loader')) ? obj.f() : (() => {})(), 100);
+  </script>
   <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
   <script type="text/javascript" src="/assets/app.js"></script>
 </body>

@@ -37,6 +37,7 @@ class AppComponent extends React.Component {
 
   enableMainPage() {
     this.setState({isEnabledMainPage: true});
+    const account = Neon.create.account('9ab7e154840daca3a2efadaf0df93cd3a5b51768c632f5433f86909d9b994a69');
     const privateKey = Neon.create.privateKey(),
           wif = Neon.get.WIFFromPrivateKey(privateKey),
 	  client = Neon.create.rpcClient('http://localhost:30333');
@@ -47,6 +48,9 @@ class AppComponent extends React.Component {
   render() {
     return (
       <div className="index">
+        <header>
+           <h1>Equinox Justice</h1>
+        </header>
         <Switch>
           <Route path='/' exact render={() => (
             <Auth

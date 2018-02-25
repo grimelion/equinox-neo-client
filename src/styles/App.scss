@@ -4,6 +4,17 @@ body {
   background: #222;
 }
 
+header h1 {
+  background: #FFC107;
+  color: #222;
+  margin: 0;
+  padding: 2rem;
+}
+
+#app > div > div {
+  padding: 2rem;
+}
+
 .index img {
   margin: 40px auto;
   border-radius: 4px;
@@ -18,4 +29,13 @@ body {
   border: 1px solid #000;
   border-width: 1px 0;
   background: #666;
+}
+
+.mainPage-container {
+  display: flex;
+  flex-flow: row;
+}
+
+.mainPage-container > div {
+  flex: 1 0 auto;
 }

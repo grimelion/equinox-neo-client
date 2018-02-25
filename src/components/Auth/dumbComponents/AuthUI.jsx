@@ -4,16 +4,18 @@ const AuthUI = (props) => {
   if (props.registration === true) {
     return (
       <div>
-        <h1>Registration on local client</h1>
+        <h1>Register as an observer</h1>
         <form>
           <label>
-            Password:
+            Password:<br/>
             <input type="password" placeholder="Password" value={props.password} onChange={props.handleChangePassword}/>
           </label>
+          <br/><br/>
           <label>
-            Repeat password:
+            Repeat password:<br/>
             <input type="password" placeholder="Repeat password"/>
           </label>
+          <br/><br/>
           <button onClick={(e) =>{e.preventDefault(); props.handleSubmit('registration')}}>Generate key</button>
         </form>
     </div>
@@ -24,9 +26,15 @@ const AuthUI = (props) => {
         <h1>Sign in</h1>
         <form>
           <label>
-            Password:
+            Key:<br/>
+            <input type="text" placeholder="Key"/>
+          </label>
+          <br/><br/>
+          <label>
+            Password:<br/>
             <input type="password" placeholder="Password"/>
           </label>
+          <br/><br/>
           <div className="submit-btn">Confirm</div>
         </form>
       </div>

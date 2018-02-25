@@ -34,6 +34,8 @@ class Auth extends React.Component {
   }
 
   handleLoggin(password) {
+    this.props.storePassword(password);
+    this.setState({isAuthPassed: true});
   }
 
   handleSubmit(type) {
